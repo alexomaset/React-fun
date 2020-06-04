@@ -7,23 +7,27 @@ let bookList = [
   {"title":"River and The Souce", "author":"Mary Ogola", "pages":"400"},
   {"title":"Born a Crime", "author":"Trevor Noah", "pages":"500"}
 ]
-const Book = ({title, author, pages}) => {
+const Book = ({title, author, pages, freeBookMark}) => {
   return (
     <section>
       <h2>{title}</h2>
       <p>by: {author}</p>
       <p>Pages: {pages}</p>
+  <p>Free BookMark today: {freeBookMark ? 'yes!': 'no!'}</p>
     </section>
   )
 }
 
 class Library extends React.Component {
- state = { open: false }
+ state = { 
+          open: false, 
+          freeBookMark: false
+         }
 
   toggleOpenClosed = () => {
-    this.setState({
-      open: !this.state.open
-    })
+    this.setState(prevState => ({
+      open: !prevState.open
+    }))
   }
   render() {
     const { books } = this.props
@@ -37,26 +41,14 @@ class Library extends React.Component {
                 key={i}
                 title={book.title} 
                 author={book.author} 
-                pages={book.pages} />
+                pages={book.pages}
+                freeBookMark={this.state.freeBookMark} />
             )}
       </div>
     )
   }
 }
-// const Library = ({books}) => {
-//   return (
-//     <div>
-//        {books.map(
-//             (book, i) =>
-//               <Book 
-//               key={i}
-//               title={book.title} 
-//               author={book.author} 
-//               pages={book.pages} />
-//           )}
-//     </div>
-//   )
-// }
+
 
 
 render(
