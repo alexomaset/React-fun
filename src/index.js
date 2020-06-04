@@ -20,8 +20,10 @@ const Library = ({books}) => {
   return (
     <div>
        {books.map(
-            book => 
-              <Book title={book.title} 
+            (book, i) =>
+              <Book 
+              key={i}
+              title={book.title} 
               author={book.author} 
               pages={book.pages} />
           )}
