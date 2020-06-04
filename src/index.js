@@ -7,10 +7,19 @@ var style = {
   fontFamily: 'Arial'
 }
 
+class Message extends React.Component {
+  render() {
+    return(
+      <div>
+        <h1 style={{color: this.props.color}}>{this.props.msg}</h1>
+        <p>Ill check back in {this.props.minutes} minutes
+        </p>
+      </div>
+    )
+  }
+}
+
 ReactDOM.render(
-  <div style={style}>
-    <h1>Hello World!</h1>
-    <p>We're</p>
-  </div>,
+  <Message color="blue" msg="how are you?" minutes={5}/>,
   document.getElementById('root')
 )
