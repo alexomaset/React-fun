@@ -1,25 +1,46 @@
-import React from 'react'
+import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 
-var style = {
-  backgroundColor:'orange',
-  color: 'white',
-  fontFamily: 'Arial'
+let exersiceData = {
+  total: 50,
+  powder: 20,
+  goal: 10,
+  backcountry: 10
 }
+class SkiDayCounter extends Component {
+  getPercent = decimal=> {
+    return decimal * 100 + '%'
+  }
 
-class Message extends React.Component {
+  getTotal = (total, goal) => {
+    return this.getPercent(total/goal)
+  }
+
   render() {
-    return(
-      <div>
-        <h1 style={{color: this.props.color}}>{this.props.msg}</h1>
-        <p>Ill check back in {this.props.minutes} minutes
-        </p>
-      </div>
+    const {total, powder, goal, backcountry} = this.props
+    return ( 
+     <section>
+       <div> 
+         <p>Total Days: {total}</p>
+         </div>
+         <div> 
+         <p>Total Powder: {powder}</p>
+         </div>
+         <div> 
+         <p> goal progress: {this.getTotal(total, goal)}</p>
+         </div>
+         <div> 
+         <p>Total backcountry: {backcountry}</p>
+         </div>
+     </section>
     )
   }
 }
 
 ReactDOM.render(
-  <Message color="blue" msg="how are you?" minutes={5}/>,
+  <SkiDayCounter
+  total={exersiceData.total}
+  powder={exersiceData.powder}
+  goal={exersiceData.goal} />,
   document.getElementById('root')
 )
